@@ -1,3 +1,5 @@
+<body>
+<div class="container">
 <h1><?php echo $title; ?></h1>
 <form action="<?php echo $action;?>" method="post">
     <div class="form-group">
@@ -23,10 +25,11 @@
     <div class="form-group">
         <label>Confirm password</label>
         <input type="password" class="form-control" name="confirmpassword">
-    </div>
+    </div>    
+
     <div class="form-group">
         <label>Organisation</label>        
-        <select name="organisation">
+        <select name="organisation" id="org">
             <option value="" selected disabled hidden>Choose here</option>
             <?php 
             foreach ($organisations as $org)
@@ -36,15 +39,22 @@
         </select>
     </div>
     <div class="form-group">
-        <label>Description</label>
+        <label>Occupation</label>
         <select name="occupation">
+        <option value="" selected disabled hidden>Choose here</option>
         <?php 
-            foreach ($occupations as $occu)
+            foreach ($SYNTRA as $occu)
             {
                 ?><option value="<?php echo $occu->id;?>"><?php echo $occu->occName;?></option>
             <?php } ?>
         </select>
     </div>
+    
     <input type="submit" value="Register" class="btn btn-primary">
 <form>
+</div>
 <?php echo validation_errors('<p class="error">'); ?>
+
+<script src="js/org.js">
+</body>
+</html>

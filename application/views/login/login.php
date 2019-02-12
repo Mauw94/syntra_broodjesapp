@@ -1,3 +1,4 @@
+<div class="container">
 <?php
     if ($this->session->userdata('user') != null) {
         echo 'Already logged in';
@@ -17,10 +18,11 @@
 <form>
 <?php echo validation_errors('<p class="error">'); ?>
 <br><hr>
-<a href="<?php echo site_url('register');?>" class="btn btn-default">Registreren</a>
+<a href="<?php echo site_url('register');?>" class="btn btn-success">Registreren</a>
 <?php if (isset($success)) {
     echo $success;
 } ?>
 <?php if (isset($failed)) {
     echo $failed;
 } ?>
+</div>

@@ -18,4 +18,11 @@ class Occupations_model extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result();
     }
+
+    function occupations_by_organisation($org_id)
+    {
+        $sql = "SELECT * FROM occupations WHERE organisation_id = '" . $org_id . "'";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
 }

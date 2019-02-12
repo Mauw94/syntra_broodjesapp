@@ -4,6 +4,8 @@ if (!defined('BASEPATH'))
 
 class Register extends CI_controller {
 
+    private $data;
+
     function __construct()
     {
         parent::__construct();
@@ -14,17 +16,30 @@ class Register extends CI_controller {
 
     function index()
     {
-        $data = array(
-            'title' => set_value('Login'),
+        $this->data = array(
+            'title' => 'Register',
             'action' => site_url('register/register_user'),
             'success' => '',
             'failed' => '',
             'organisations' => $this->Occupations_model->all_organizations(),
             'occupations' => $this->Occupations_model->all_occupations()
         );
-        //$this->load->view('templates/header', $data);
-        $this->load->view('login/register', $data);    
+        $this->loadAllOccupations();
+        
+        $this->load->view('templates/header');
+        $this->load->view('login/register', $this->data);    
         //$this->load->view('templates/footer', $data);    
+
+        print_r($this->data);
+    }
+
+    private function loadAllOccupations()
+    {
+        $orgs = $this->Occupations_model->all_organizations();
+        foreach ($orgs as $org) 
+        {
+            $this->data[$org->orgName] = $this->Occupations_model->occupations_by_organisation($org->id);
+        }        
     }
 
     function register_user()

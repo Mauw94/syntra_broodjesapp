@@ -18,7 +18,7 @@ class Login extends CI_Controller {
             'title' => set_value('title'),
             'action' => site_url('login/login_user')
         );
-        //$this->load->view('templates/header', $data);
+        $this->load->view('templates/header', $data);
         $this->load->view('login/login', $data);
         //$this->load->view('templates/footer', $data);
     }
